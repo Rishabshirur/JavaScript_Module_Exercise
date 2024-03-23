@@ -4,6 +4,7 @@
 */
 const sixth = {name: {firstName: "Patrick", lastName: "Hill"}, age: 47, dob: '9/25/1975', hobbies: ["Playing music", "Movies", "Spending time with family"]} 
 const seventh = {age: 47, name: {firstName: "Patrick", lastName: "Hill"}, hobbies: ["Playing music", "Movies", "Spending time with family"], dob: '9/25/1975'}
+// Function to check if a variable number of objects are equal
 let areObjectsEqual = (...args) => {
       if(!args){
             throw 'Error: input does not exist'
@@ -16,6 +17,7 @@ let areObjectsEqual = (...args) => {
                   throw 'Error: each element in args must be of type object'
             }
       } 
+      // Compare each object with the first one
       for(let i=1;i<args.length;i++){
             let keyObj1=Object.keys(args[0]);
             let keyObj2=Object.keys(args[i]);
@@ -53,6 +55,7 @@ let areObjectsEqual = (...args) => {
 
 };
 
+// Function to calculate object values based on provided functions
 let calculateObject = (object, funcs) => {
       if(!object){
             throw 'Error: Object needs to exist'
@@ -77,11 +80,13 @@ let calculateObject = (object, funcs) => {
             throw 'Error: Values of the object must be numbers'        
             }
       }
+      // Check if each function is valid
       funcs.forEach(f => {
             if(typeof f !== 'function'){
             throw 'Error: Every function must be type function'
             } 
       });
+      // Apply each function to object values
       funcs.forEach(f=>{
           for(let x in object){
               object[x]=f(object[x]).toFixed(2);
@@ -90,7 +95,9 @@ let calculateObject = (object, funcs) => {
       return object;
   };
 
+// Function to combine multiple objects into one, retaining common keys
 let combineObjects = (...args) => {
+      // Input validation
       if(args.length<2){
             throw 'Error: must have at least two objects'
       }
