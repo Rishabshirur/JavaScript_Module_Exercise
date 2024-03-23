@@ -2,8 +2,9 @@
       using the ES6 exports syntax. 
       DO NOT CHANGE THE FUNCTION NAMES
 */
-
+// Function to sort and filter an array of objects based on specified criteria
 let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
+  // Input validation    
   if(typeof filterBy!== 'string'){
     throw 'filterBy is not string'
   }
@@ -33,6 +34,7 @@ let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
       throw 'empty object'
     }
   });
+  // Check if all objects in the array have the same keys    
   function keycompare(x,y) {
     return Object.keys(y).every(key=>x.hasOwnProperty(key))  
   }
@@ -42,6 +44,7 @@ let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
         throw 'objects dont have same keys'
       }
   }
+  // Check if all object values are strings    
   array.forEach(ele => {
     for(let x in ele) {
       if(typeof ele[x]!='string'|| ele[x].trim().length==0){
@@ -112,9 +115,10 @@ let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
   
 
 
-  let newObjArray=[];
   
+  // Function to filter array of objects based on key-value pair
   function filterByKeyValue(filterBy,filterByTerm){
+      let newObjArray=[];  
       array.forEach(ele=>{
           if(ele[filterBy]==filterByTerm){
               newObjArray.push(ele);
@@ -122,8 +126,9 @@ let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
       })
       return newObjArray;
   }
-  
+  // Comparator functions for sorting
   function comparelocFirst(a, b) {
+      // Compare based on sortBy2
       const tmp1 = a[sortBy2[0]].toUpperCase();
       const tmp2 = b[sortBy2[0]].toUpperCase();
       let tempflag = 0;
@@ -143,6 +148,7 @@ let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
   };
   
   function comparelocSecond(a, b) {
+      // Compare based on sortBy1
       const tmp1 = a[sortBy1[0]].toUpperCase();
       const tmp2 = b[sortBy1[0]].toUpperCase();
   
@@ -161,6 +167,7 @@ let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
           throw "Error"
       }
   };  
+      // Perform filtering and sorting
       let firstArray = filterByKeyValue(filterBy,filterByTerm);
       let secondArray = firstArray.sort(comparelocFirst);
       return secondArray.sort(comparelocSecond);
@@ -169,7 +176,7 @@ let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
    
    
 
-  
+  // Function to merge arrays of strings and numbers
   let merge = (...args) => {
     if(args.length<1){
       throw 'At least one array must be supplied as input'
@@ -223,7 +230,8 @@ let sortAndFilter = (array, sortBy1, sortBy2, filterBy, filterByTerm) => {
     });
   return num;
   };
-  
+
+// Function to perform matrix multiplication  
 let matrixMultiply = (...args) => {
   if(args.length<2){
     throw 'There should at least two inputs'
